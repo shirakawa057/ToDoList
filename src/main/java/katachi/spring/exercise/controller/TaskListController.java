@@ -43,7 +43,6 @@ public class TaskListController {
 		//担当名のMapを作成する
 		Map<String, Integer> userMap = userApplicationService.getUserMap();
 		model.addAttribute("userMap", userMap);
-		System.out.println("test");
 		return "/task/input";
 	}
 
@@ -58,11 +57,9 @@ public class TaskListController {
 
 		//入力チェック
 		if (bindingResult.hasErrors()) {
-			System.out.println("test2");
 			return getInput(model, form, user);
 		}
 		//登録処理
-		System.out.println("test1");
 		//createDatetimeとupdateDateTimeがnullだからここで日付を入れるメソッドを使う
 		int del = 0;
 		task.setRegistrationDate(new Date());
@@ -70,7 +67,6 @@ public class TaskListController {
 		task.setUpdateDateTime(new Date());
 
 		task.setIsDeleted(del);
-		System.out.println("test3");
 		if (form.getCheck() == null) {
 			form.setCheck(0);
 		}
@@ -103,28 +99,22 @@ public class TaskListController {
 
 		//入力チェック
 		if (bindingResult.hasErrors()) {
-			System.out.println("test2");
 			return getUpdateTask(id, model, form);
 		}
 		//登録処理
-		System.out.println("test1");
 		//createDatetimeとupdateDateTimeがnullだからここで日付を入れるメソッドを使う
 		int del = 0;
 		task.setRegistrationDate(new Date());
 		task.setUpdateDateTime(new Date());
 
 		task.setIsDeleted(del);
-		System.out.println("test3");
 		if (form.getCheck() == null) {
 			form.setCheck(0);
 		}
 		if (form.getCheck() == 1) {
 			task.setFinshedDate(new Date());
-			System.out.println("test182");
 		}
 
-		System.out.println(task.getTaskName());
-		System.out.println(task.getId());
 
 		userService.updateTaskOne(task);
 		return "redirect:/task/list";
