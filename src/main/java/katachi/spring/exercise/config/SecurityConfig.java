@@ -25,12 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	/**public static void main(String[] args) {
-	
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println(encoder.encode("test"));
-	}*/
-
 	/** セキュリティの対象外を設定 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
